@@ -94,6 +94,11 @@ class LocalStorage {
             console.error(err);
         }
     }
+
+    async rootpath(path) {
+        return this.root
+        
+    }
 }
 
 module.exports = LocalStorage;

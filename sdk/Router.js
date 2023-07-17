@@ -5,6 +5,12 @@ module.exports = function (storages, options = {}) {
     let uploadPath = options.uploadPath || require("os").tmpdir();
     for (let storage of storages) {
 
+        // `rootpath` endpoint, only for local
+        router.get(`/local/rootpath`, async function (req, res) {
+            let rootpath = await storage.rootpath(req.query.path);
+            return res.json(rootpath);
+        });
+
         // `list` endpoint
         router.get(`/${storage.code}/list`, async function (req, res) {
             let result = await storage.list(req.query.path);
